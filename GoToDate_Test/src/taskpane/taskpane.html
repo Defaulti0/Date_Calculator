@@ -6,7 +6,55 @@
   </head>
   <body>
     <h2>Change Appointment Date</h2>
-    <input type="text" id="dateInput" placeholder="Enter new date (e.g., next Monday)" />
+    <input type="text" id="dateInput" placeholder="Enter date" />
+    
+    <ul>
+      <li>Today, Tomorrow, Yesterday, Last Friday, etc</li>
+      <li>5 days ago</li>
+      <li>2 weeks from now</li>
+      <li>Sat Aug 17 2025</li>
+      <li>2025-11-30</li>
+    </ul>
+
+    <label for="startTimePicker">Start Time:</label>
+    <select id="startTimePicker" class="timePicker"></select>
+
+    <label for="endTimePicker">End Time:</label>
+    <select id="endTimePicker" class="timePicker"></select>
+
+    <script>
+      function populateTimePicker(elementId) {
+        const timePicker = document.getElementById(elementId);
+        timePicker.innerHTML = '';
+
+        const startTime = new Date();
+        startTime.setHours(0, 0, 0, 0);
+
+        const endTime = new Date();
+        endTime.setHours(23, 59, 0, 0);
+
+        const interval = 30 * 60 * 1000;
+
+        let currentTime = new Date(startTime);
+
+        while (currentTime <= endTime) {
+          const hours = currentTime.getHours().toString().padStart(2, '0');
+          const minutes = currentTime.getMinutes().toString().padStart(2, '0');
+          const timeString = `${hours}:${minutes}`;
+
+          const option = document.createElement('option');
+          option.value = timeString;
+          option.textContent = timeString;
+          timePicker.appendChild(option);
+
+          currentTime.setTime(currentTime.getTime() + interval);
+        }
+      }
+
+      populateTimePicker('startTimePicker');
+      populateTimePicker('endTimePicker');
+    </script>
+
     <button id="updateButton">Update Date</button>
   </body>
 </html>
