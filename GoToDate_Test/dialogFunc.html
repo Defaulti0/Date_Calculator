@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Go To Date Add-in</title>
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+    <script>
+      Office.initialize = function () {
+        document.getElementById("openDialog").onclick = openDialog;
+      };
+
+      function openDialog() {
+        Office.context.ui.displayDialogAsync(
+          "https://localhost:3000/dialog.html",
+          { height: 50, width: 50 },
+          function (asyncResult) {
+            if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
+              var dialog = asyncResult.value;
+              // Listen for messages from the dialog box.
+              dialog.addEventHandler(Office.EventType.DialogMessageReceived, function (arg) {
+                var selectedDate = arg.message;
+                console.log("User selected date: " + selectedDate);
+                // Here, you could use the date to create an appointment or update your UI.
+                dialog.close();
+              });
+            } else {
+              console.error("Dialog failed to open: " + asyncResult.error.message);
+            }
+          }
+        );
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Go To Date Add-in</h1>
+    <button id="openDialog">Select a Date</button>
+  </body>
+</html>
