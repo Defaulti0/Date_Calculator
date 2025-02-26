@@ -1,0 +1,42 @@
+body {
+  font-family: sans-serif;
+  width: auto;
+  /* Assume body background is set elsewhere, or set it here for testing */
+  /* background-color: black; */ /* Or white */
+}
+
+.input-area {
+  margin-bottom: 20px;
+}
+
+.calendar {
+  display: inline-block;
+  vertical-align: top;
+  width: auto;
+  border: 1px solid #eee;
+}
+
+.calendar-header {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.calendar-day {
+  text-align: center;
+  padding: 5px;
+  border: 1px solid #eee;
+}
+
+.calendar-day.weekday-header {
+  font-weight: bold;
+}
+
+.calendar-day.today {
+  background-color: lightblue;
+}

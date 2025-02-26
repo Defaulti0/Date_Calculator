@@ -3,12 +3,19 @@
   <head>
     <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
     <script src="taskpane.js"></script>
+    <link rel="stylesheet" href="taskpane.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
   </head>
-  <body>
-    <h2>Change Appointment Date</h2>
+
+  <body id="wholePage">
+    <h2 id="title">Change Appointment Date</h2>
     <input type="text" id="dateInput" placeholder="Enter date" />
-    
-    <ul>
+
+    <ul id="sampleList">
+      <li>Examples:</li>
       <li>Today, Tomorrow, Yesterday, Last Friday, etc</li>
       <li>5 days ago</li>
       <li>2 weeks from now</li>
@@ -17,15 +24,26 @@
     </ul>
 
     <label for="startTimePicker">Start Time:</label>
-    <select id="startTimePicker" class="timePicker"></select>
+    <input type="time" id="startTimePicker" class="timePicker">
+
+    <br></br>
 
     <label for="endTimePicker">End Time:</label>
-    <select id="endTimePicker" class="timePicker"></select>
+    <input type="time" id="endTimePicker" class="timePicker">
+
+    <br></br>
+
+    <div class="calendar" id="calendar">
+      <div class="calendar-header">
+        <h2 id="monthYear"></h2>
+      </div>
+      <div class="calendar-grid" id="calendarGrid"></div>
+    </div>
 
     <script>
       function populateTimePicker(elementId) {
         const timePicker = document.getElementById(elementId);
-        timePicker.innerHTML = '';
+        timePicker.innerHTML = "";
 
         const startTime = new Date();
         startTime.setHours(0, 0, 0, 0);
@@ -38,11 +56,11 @@
         let currentTime = new Date(startTime);
 
         while (currentTime <= endTime) {
-          const hours = currentTime.getHours().toString().padStart(2, '0');
-          const minutes = currentTime.getMinutes().toString().padStart(2, '0');
+          const hours = currentTime.getHours().toString().padStart(2, "0");
+          const minutes = currentTime.getMinutes().toString().padStart(2, "0");
           const timeString = `${hours}:${minutes}`;
 
-          const option = document.createElement('option');
+          const option = document.createElement("option");
           option.value = timeString;
           option.textContent = timeString;
           timePicker.appendChild(option);
@@ -54,6 +72,8 @@
       populateTimePicker('startTimePicker');
       populateTimePicker('endTimePicker');
     </script>
+
+  <br></br>
 
     <button id="updateButton">Update Date</button>
   </body>
