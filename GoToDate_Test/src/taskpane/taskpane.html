@@ -4,34 +4,30 @@
     <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
     <script src="taskpane.js"></script>
     <link rel="stylesheet" href="taskpane.css" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-    />
+    <script type="module" src="https://unpkg.com/@fluentui/web-components"></script>
   </head>
 
   <body id="wholePage">
-    <h2 id="title">Change Appointment Date</h2>
-    <input type="text" id="dateInput" placeholder="Enter date" />
+    <fluent-text-field class="textInput" id="dateInput" placeholder="Enter date..."></fluent-text-field>
+    <fluent-button class="listButton" id="toggleButton">Show Examples</fluent-button>
 
-    <ul id="sampleList">
-      <li>Examples:</li>
-      <li>Today, Tomorrow, Yesterday, Last Friday, etc</li>
+    <ul id="sampleList" class="list">
+      <li>Today, Yesterday, Last Friday, etc</li>
       <li>5 days ago</li>
       <li>2 weeks from now</li>
-      <li>Sat Aug 17 2025</li>
-      <li>2025-11-30</li>
+      <li>21 days from 2/25/25</li>
     </ul>
 
-    <label for="startTimePicker">Start Time:</label>
+    <!-- <label for="startTimePicker">Start Time:</label>
     <input type="time" id="startTimePicker" class="timePicker">
-
+    
     <br></br>
-
+    
     <label for="endTimePicker">End Time:</label>
     <input type="time" id="endTimePicker" class="timePicker">
-
-    <br></br>
+    
+    <br></br> -->
+    <br />
 
     <div class="calendar" id="calendar">
       <div class="calendar-header">
@@ -40,41 +36,9 @@
       <div class="calendar-grid" id="calendarGrid"></div>
     </div>
 
-    <script>
-      function populateTimePicker(elementId) {
-        const timePicker = document.getElementById(elementId);
-        timePicker.innerHTML = "";
+    <br />
 
-        const startTime = new Date();
-        startTime.setHours(0, 0, 0, 0);
-
-        const endTime = new Date();
-        endTime.setHours(23, 59, 0, 0);
-
-        const interval = 30 * 60 * 1000;
-
-        let currentTime = new Date(startTime);
-
-        while (currentTime <= endTime) {
-          const hours = currentTime.getHours().toString().padStart(2, "0");
-          const minutes = currentTime.getMinutes().toString().padStart(2, "0");
-          const timeString = `${hours}:${minutes}`;
-
-          const option = document.createElement("option");
-          option.value = timeString;
-          option.textContent = timeString;
-          timePicker.appendChild(option);
-
-          currentTime.setTime(currentTime.getTime() + interval);
-        }
-      }
-
-      populateTimePicker('startTimePicker');
-      populateTimePicker('endTimePicker');
-    </script>
-
-  <br></br>
-
-    <button id="updateButton">Update Date</button>
+    <fluent-button appearance="accent" class="submitButton" id="updateButton">Calculate Date</fluent-button>
+    <script type="module" src="https://unpkg.com/@fluentui/web-components"></script>
   </body>
 </html>

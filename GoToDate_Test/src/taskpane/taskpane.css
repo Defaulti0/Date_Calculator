@@ -1,12 +1,8 @@
 body {
+  display: grid;
   font-family: sans-serif;
   width: auto;
-  /* Assume body background is set elsewhere, or set it here for testing */
-  /* background-color: black; */ /* Or white */
-}
-
-.input-area {
-  margin-bottom: 20px;
+  padding: 1em;
 }
 
 .calendar {
@@ -14,23 +10,26 @@ body {
   vertical-align: top;
   width: auto;
   border: 1px solid #eee;
+  border-radius: 5px;
+  margin: 5px;
 }
 
 .calendar-header {
   text-align: center;
-  margin-bottom: 10px;
 }
 
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 2px;
+  margin: 5px;
 }
 
 .calendar-day {
   text-align: center;
   padding: 5px;
   border: 1px solid #eee;
+  border-radius: 5px;
 }
 
 .calendar-day.weekday-header {
@@ -39,4 +38,35 @@ body {
 
 .calendar-day.today {
   background-color: lightblue;
+}
+
+.submitButton {
+  margin: auto;
+  width: 50%;
+}
+
+.listButton {
+  margin: auto;
+  width: 50%;
+}
+
+.textInput {
+  margin: 1rem;
+}
+
+.title {
+  text-align: center;
+}
+
+.list {
+  margin: 1rem;
+}
+
+#sampleList {
+  display: none; /* This line hides the list initially */
+}
+
+/* If you use the class toggle method, add the following as well */
+.hidden {
+  display: none;
 }

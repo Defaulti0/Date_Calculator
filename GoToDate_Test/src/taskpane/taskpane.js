@@ -3,8 +3,11 @@ Office.onReady(() => {
   applyOfficeTheme();
 });
 
+const currentDate = new Date();
 const monthYear = document.getElementById("monthYear");
 const calendarGrid = document.getElementById("calendarGrid");
+const toggleButton = document.getElementById("toggleButton");
+const myList = document.getElementById("sampleList");
 
 function generateCalendar(date) {
   const year = date.getFullYear();
@@ -43,9 +46,6 @@ function generateCalendar(date) {
   }
 }
 
-const currentDate = new Date();
-generateCalendar(currentDate);
-
 function applyOfficeTheme() {
   // Get office theme colors.
   var bodyBackgroundColor = Office.context.officeTheme.bodyBackgroundColor;
@@ -57,7 +57,6 @@ function applyOfficeTheme() {
   if (bodyBackgroundColor == "#FAF9F8") {
     // Apply body background color to a CSS class.
     document.getElementById("sampleList").style.color = "black";
-    document.getElementById("title").style.color = "black";
     calendarDays.forEach((day) => {
       day.style.backgroundColor = "#white";
       day.style.color = "black";
@@ -69,7 +68,6 @@ function applyOfficeTheme() {
   } else if (bodyBackgroundColor == "#212121") {
     // Apply body background color to a CSS class.
     document.getElementById("wholePage").style.color = "white";
-    document.getElementById("title").style.color = "white";
     calendarDays.forEach((day) => {
       day.style.backgroundColor = "#black";
       day.style.color = "white";
@@ -105,7 +103,7 @@ async function updateApptDate() {
       } else {
         console.log("Date set to " + parsedDate);
         generateCalendar(parsedDate);
-        updateApptTime();
+        // updateApptTime();
       }
     });
   } catch (error) {
@@ -113,44 +111,34 @@ async function updateApptDate() {
   }
 }
 
-function updateApptTime() {
-  const startTimeValue = document.getElementById("startTimePicker").value;
-  const endTimeValue = document.getElementById("endTimePicker").value;
+// function updateApptTime(ogDate) {
+//   const startTimeValue = document.getElementById("startTimePicker").value;
+//   const endTimeValue = document.getElementById("endTimePicker").value;
 
-  // ... (time format validation) ...
+//   const originalStart = Office.context.mailbox.item.start;
+//   const originalEnd = Office.context.mailbox.item.end;
 
-  Office.context.mailbox.item.getAsync("start", (startResult) => {
-    if (startResult.status === Office.AsyncResultStatus.Succeeded) {
-      const appointmentStart = startResult.value;
-      Office.context.mailbox.item.getAsync("end", (endResult) => {
-        if (endResult.status === Office.AsyncResultStatus.Succeeded) {
-          const appointmentEnd = endResult.value;
+//   const startDateTime = new Date(originalStart); // Create a copy of original start
+//   const endDateTime = new Date(originalEnd); // Create a copy of original end
 
-          try {
-            const [startHours, startMinutes] = startTimeValue.split(":").map(Number);
-            const [endHours, endMinutes] = endTimeValue.split(":").map(Number);
+//   startDateTime.setHours(parseInt(startTimeValue.split(":")[0]));
+//   startDateTime.setMinutes(parseInt(startTimeValue.split(":")[1]));
 
-            const newStart = new Date(appointmentStart);
-            newStart.setHours(startHours, startMinutes, 0, 0);
+//   endDateTime.setHours(parseInt(endTimeValue.split(":")[0]));
+//   endDateTime.setMinutes(parseInt(endTimeValue.split(":")[1]));
 
-            const newEnd = new Date(appointmentEnd);
-            newEnd.setHours(endHours, endMinutes, 0, 0);
-
-            // ... (time range check and setAsync calls) ...
-          } catch (error) {
-            // ... (error handling) ...
-          }
-        } else {
-          console.error("Failed to get appointment end:", endResult.error);
-          alert("Failed to get appointment end: " + endResult.error.message);
-        }
-      });
-    } else {
-      console.error("Failed to get appointment start:", startResult.error);
-      alert("Failed to get appointment start: " + startResult.error.message);
-    }
-  });
-}
+//   Office.context.mailbox.item.start.setAsync(startDateTime, (startResult) => {
+//     if (startResult.status === Office.AsyncResultStatus.Succeeded) {
+//       Office.context.mailbox.item.end.setAsync(endDateTime, (endResult) => {
+//         if (endResult.status !== Office.AsyncResultStatus.Succeeded) {
+//           console.error("error setting end time: ", endResult.error);
+//         }
+//       });
+//     } else {
+//       console.error("error setting start time: ", startResult.error);
+//     }
+//   });
+// }
 
 // Function to parse natural language dates
 function parseDate(input) {
@@ -162,3 +150,45 @@ function parseDate(input) {
     return null;
   }
 }
+
+// function populateTimePicker(elementId) {
+//   const timePicker = document.getElementById(elementId);
+//   timePicker.innerHTML = "";
+
+//   const startTime = new Date();
+//   startTime.setHours(0, 0, 0, 0);
+
+//   const endTime = new Date();
+//   endTime.setHours(23, 59, 0, 0);
+
+//   const interval = 30 * 60 * 1000;
+
+//   let currentTime = new Date(startTime);
+
+//   while (currentTime <= endTime) {
+//     const hours = currentTime.getHours().toString().padStart(2, "0");
+//     const minutes = currentTime.getMinutes().toString().padStart(2, "0");
+//     const timeString = `${hours}:${minutes}`;
+
+//     const option = document.createElement("option");
+//     option.value = timeString;
+//     option.textContent = timeString;
+//     timePicker.appendChild(option);
+
+//     currentTime.setTime(currentTime.getTime() + interval);
+//   }
+// }
+
+toggleButton.addEventListener("click", function () {
+  if (myList.style.display === "none" || myList.style.display === "") {
+    myList.style.display = "block"; // Or 'list-item'
+    toggleButton.textContent = "Hide Examples";
+  } else {
+    myList.style.display = "none";
+    toggleButton.textContent = "Show Examples";
+  }
+});
+
+// populateTimePicker("startTimePicker");
+// populateTimePicker("endTimePicker");
+generateCalendar(currentDate);
