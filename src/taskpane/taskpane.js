@@ -1,5 +1,3 @@
-import chrono from "https://cdn.jsdelivr.net/npm/chrono-node/+esm";
-
 Office.onReady(() => {
   document.getElementById("updateButton").onclick = updateApptDate;
   applyOfficeTheme();
@@ -90,13 +88,7 @@ async function updateApptDate() {
   console.log("Input date string: ", userInput);
 
   try {
-    // Use a date parser (e.g., chrono-node) to process natural language
     let parsedDate = parseDate(userInput);
-
-    // if (!parsedDate) {
-    //   alert("Invalid date. Try something like 'next Monday' or 'March 3'.");
-    //   return;
-    // }
 
     // Get the current appointment item
     Office.context.mailbox.item.start.setAsync(parsedDate, function (asyncResult) {
@@ -145,7 +137,7 @@ async function updateApptDate() {
 // Function to parse natural language dates
 function parseDate(input) {
   try {
-    // let chrono = require("chrono-node");
+    let chrono = require("chrono-node");
     return chrono.parseDate(input);
   } catch (error) {
     console.error("Error parsing date:", error);
