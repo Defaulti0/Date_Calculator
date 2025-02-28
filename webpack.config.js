@@ -5,7 +5,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const urlDev = "https://localhost:3000/";
-const urlProd = "https://defaulti0.github.io/Date_Calculator/"; // CHANGE THIS TO YOUR PRODUCTION DEPLOYMENT LOCATION
+const urlProd = "https://defaulti0.github.io/Date_Calculator"; // CHANGE THIS TO YOUR PRODUCTION DEPLOYMENT LOCATION
 
 async function getHttpsOptions() {
   const httpsOptions = await devCerts.getHttpsServerOptions();
@@ -18,10 +18,7 @@ module.exports = async (env, options) => {
     devtool: "source-map",
     entry: {
       polyfill: ["core-js/stable", "regenerator-runtime/runtime"],
-      taskpane: [
-        "https://defaulti0.github.io/Date_Calculator/src/taskpane/taskpane.js",
-        "https://defaulti0.github.io/Date_Calculator/src/taskpane/taskpane.html",
-      ],
+      taskpane: ["./src/taskpane/taskpane.js", "./src/taskpane/taskpane.html"],
     },
     output: {
       clean: true,

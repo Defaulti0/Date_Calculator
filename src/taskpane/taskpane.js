@@ -179,13 +179,14 @@ function parseDate(input) {
 //   }
 // }
 
-toggleButton.addEventListener("click", function () {
-  if (myList.style.display === "none" || myList.style.display === "") {
-    myList.style.display = "block"; // Or 'list-item'
-    toggleButton.textContent = "Hide Examples";
+document.addEventListener("DOMContentLoaded", function () {
+  const button = document.getElementById("toggleButton"); // Replace with the actual ID
+  if (button) {
+    button.addEventListener("click", function () {
+      console.log("Button clicked!");
+    });
   } else {
-    myList.style.display = "none";
-    toggleButton.textContent = "Show Examples";
+    console.error("Button not found!");
   }
 });
 
