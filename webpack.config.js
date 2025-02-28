@@ -30,7 +30,7 @@ module.exports = async (env, options) => {
       rules: [
         {
           test: /\.js$/,
-          exclude: /node_modules\/(?!chrono-node)/,
+          exclude: /node_modules/,
           use: {
             loader: "babel-loader",
           },
