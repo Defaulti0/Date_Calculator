@@ -12,6 +12,7 @@ function generateCalendar(date) {
   const month = date.getMonth();
   const firstDay = new Date(year, month, 1).getDay();
   const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const today = new Date();
 
   monthYear.textContent = date.toLocaleString("default", { month: "long", year: "numeric" });
   calendarGrid.innerHTML = "";
@@ -177,7 +178,9 @@ function parseDate(input) {
 // }
 
 document.addEventListener("DOMContentLoaded", function () {
-  const button = document.getElementById("toggleButton"); // Replace with the actual ID
+  const button = document.getElementById("toggleButton");
+  const myList = document.getElementById("sampleList");
+
   if (button) {
     button.addEventListener("click", function () {
       console.log("Button clicked!");
