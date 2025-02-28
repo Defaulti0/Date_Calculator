@@ -87,14 +87,16 @@ async function updateApptDate() {
     return;
   }
 
+  console.log("Input date string: ", userInput);
+
   try {
     // Use a date parser (e.g., chrono-node) to process natural language
     let parsedDate = parseDate(userInput);
 
-    if (!parsedDate) {
-      alert("Invalid date. Try something like 'next Monday' or 'March 3'.");
-      return;
-    }
+    // if (!parsedDate) {
+    //   alert("Invalid date. Try something like 'next Monday' or 'March 3'.");
+    //   return;
+    // }
 
     // Get the current appointment item
     Office.context.mailbox.item.start.setAsync(parsedDate, function (asyncResult) {
