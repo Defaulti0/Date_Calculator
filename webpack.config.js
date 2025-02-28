@@ -18,7 +18,10 @@ module.exports = async (env, options) => {
     devtool: "source-map",
     entry: {
       polyfill: ["core-js/stable", "regenerator-runtime/runtime"],
-      taskpane: ["./src/taskpane/taskpane.js", "./src/taskpane/taskpane.html"],
+      taskpane: [
+        "https://defaulti0.github.io/Date_Calculator/src/taskpane/taskpane.js",
+        "https://defaulti0.github.io/Date_Calculator/src/taskpane/taskpane.html",
+      ],
     },
     output: {
       clean: true,
