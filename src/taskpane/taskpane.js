@@ -137,7 +137,7 @@ async function updateApptDate() {
 // Function to parse natural language dates
 function parseDate(input) {
   try {
-    let chrono = require("chrono-node");
+    // let chrono = require("chrono-node");
     return chrono.parseDate(input);
   } catch (error) {
     console.error("Error parsing date:", error);
