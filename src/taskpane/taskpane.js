@@ -6,8 +6,6 @@ Office.onReady(() => {
 const currentDate = new Date();
 const monthYear = document.getElementById("monthYear");
 const calendarGrid = document.getElementById("calendarGrid");
-const toggleButton = document.getElementById("toggleButton");
-const myList = document.getElementById("sampleList");
 
 function generateCalendar(date) {
   const year = date.getFullYear();
