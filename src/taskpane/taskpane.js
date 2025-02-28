@@ -1,4 +1,4 @@
-// import { chrono } from "chrono-node";
+import * as chrono from "https://cdnjs.cloudflare.com/ajax/libs/chrono-node/1.0.2/chrono.js";
 
 Office.onReady(() => {
   document.getElementById("updateButton").onclick = updateApptDate;
@@ -14,7 +14,6 @@ function generateCalendar(date) {
   const month = date.getMonth();
   const firstDay = new Date(year, month, 1).getDay();
   const daysInMonth = new Date(year, month + 1, 0).getDate();
-  const today = new Date();
 
   monthYear.textContent = date.toLocaleString("default", { month: "long", year: "numeric" });
   calendarGrid.innerHTML = "";
