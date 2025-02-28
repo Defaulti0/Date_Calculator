@@ -12,7 +12,6 @@ function generateCalendar(date) {
   const month = date.getMonth();
   const firstDay = new Date(year, month, 1).getDay();
   const daysInMonth = new Date(year, month + 1, 0).getDate();
-  const today = new Date();
 
   monthYear.textContent = date.toLocaleString("default", { month: "long", year: "numeric" });
   calendarGrid.innerHTML = "";
@@ -182,6 +181,13 @@ document.addEventListener("DOMContentLoaded", function () {
   if (button) {
     button.addEventListener("click", function () {
       console.log("Button clicked!");
+      if (myList.style.display === "none" || myList.style.display === "") {
+        myList.style.display = "block"; // Or 'list-item'
+        toggleButton.textContent = "Hide Examples";
+      } else {
+        myList.style.display = "none";
+        toggleButton.textContent = "Show Examples";
+      }
     });
   } else {
     console.error("Button not found!");
