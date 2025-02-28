@@ -1,4 +1,4 @@
-import { chrono } from "chrono-node";
+// import { chrono } from "chrono-node";
 
 Office.onReady(() => {
   document.getElementById("updateButton").onclick = updateApptDate;
