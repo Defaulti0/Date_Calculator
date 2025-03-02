@@ -43,7 +43,6 @@ temp
 lib
 lib-amd
 coverage
-dist
 npm-debug.log
 npm-debug.log.*
 pnpm-debug.log
