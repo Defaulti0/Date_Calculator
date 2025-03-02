@@ -1,5 +1,5 @@
 // import * as chrono from "https://cdnjs.cloudflare.com/ajax/libs/chrono-node/1.0.2/chrono.js";
-import chrono from "chrono-node";
+import * as chrono from "chrono-node";
 
 Office.onReady(() => {
   document.getElementById("updateButton").onclick = updateApptDate;
