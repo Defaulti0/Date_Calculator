@@ -1,4 +1,4 @@
-import * as chrono from "https://cdnjs.cloudflare.com/ajax/libs/chrono-node/1.0.2/chrono.js";
+// import * as chrono from "https://cdnjs.cloudflare.com/ajax/libs/chrono-node/1.0.2/chrono.js";
 
 Office.onReady(() => {
   document.getElementById("updateButton").onclick = updateApptDate;
@@ -138,7 +138,7 @@ async function updateApptDate() {
 // Function to parse natural language dates
 function parseDate(input) {
   try {
-    // let chrono = require("chrono-node");
+    let chrono = require("chrono-node");
     return chrono.parseDate(input);
   } catch (error) {
     console.error("Error parsing date:", error);
