@@ -24,7 +24,7 @@
     <Form xsi:type="ItemRead">
       <DesktopSettings>
         <SourceLocation DefaultValue="https://defaulti0.github.io/Date_Calculator/dist/taskpane.html"/>
-        <RequestedHeight>250</RequestedHeight>
+        <!-- <RequestedHeight>250</RequestedHeight> -->
       </DesktopSettings>
     </Form>
   </FormSettings>
@@ -42,6 +42,7 @@
     <Hosts>
       <Host xsi:type="MailHost">
         <DesktopFormFactor>
+          <SupportsSharedFolders>true</SupportsSharedFolders>
           <FunctionFile resid="Taskpane.Url"/>
           <ExtensionPoint xsi:type="AppointmentOrganizerCommandSurface">
             <OfficeTab id="TabDefault">
