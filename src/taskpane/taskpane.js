@@ -99,6 +99,11 @@ async function updateApptDate() {
       } else {
         console.log("Date set to " + parsedDate);
         generateCalendar(parsedDate);
+
+        // Set the All-day toggle to on or true
+        Office.context.mailbox.item.isAllDayEvent = true;
+        Office.context.mailbox.item.saveAsync();
+
         // updateApptTime();
       }
     });
